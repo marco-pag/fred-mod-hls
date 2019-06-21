@@ -15,9 +15,10 @@
 void fred_hwacc(args_t *id, args_t args[ARGS_SIZE], volatile data_t *mem_in, volatile data_t *mem_out)
 {
 	#pragma HLS DATAFLOW
+	
+	data_t temp;
 
 	*id = MODULE_ID;
-	data_t temp;
 
 	args_t arg_out = args[0];
 	args_t arg_in = args[1];
@@ -32,10 +33,11 @@ void fred_hwacc(args_t *id, args_t args[ARGS_SIZE], volatile data_t *mem_in, vol
 void fred_hwacc_2(args_t *id, args_t args[ARGS_SIZE], volatile data_t *mem_in, volatile data_t *mem_out)
 {
 	#pragma HLS DATAFLOW
-
-	*id = MODULE_ID;
+	
 	data_t a;
 	data_t b;
+
+	*id = MODULE_ID;
 
 	args_t arg_out = args[0];
 	args_t arg_in_1 = args[1];
