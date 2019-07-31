@@ -10,19 +10,17 @@
  * (at your option) any later version.
 */
 
-#ifndef FRED_HWACC_H
-#define FRED_HWACC_H
+#ifndef HW_MOD_H
+#define HW_MOD_H
 
-#include "slots.hpp"
+#include "hw_task.hpp"
 
 // Export for test bench
-static const args_t MODULE_ID = 128;
+static const args_t MODULE_ID = 1;
 
 const unsigned int BLOCK_SIZE_BYTE = (1024 * 1024);
 const unsigned int BLOCK_SIZE_DT = (BLOCK_SIZE_BYTE / sizeof(data_t));
 
-void fred_hwacc(args_t *id, args_t args[ARGS_SIZE], volatile data_t *mem_in, volatile data_t *mem_out);
+void hw_mod(args_t *id, args_t args[ARGS_SIZE], volatile data_t *mem_in, volatile data_t *mem_out);
 
-void fred_hwacc_2(args_t *id, args_t args[ARGS_SIZE], volatile data_t *mem_in, volatile data_t *mem_out);
-
-#endif /* FRED_HWACC_H */
+#endif /* HW_MOD_H */

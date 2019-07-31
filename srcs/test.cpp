@@ -1,18 +1,7 @@
-/*
- * Fred hardware accelerator stub.
- *
- * Copyright (C) 2019, Marco Pagani, ReTiS Lab.
- * <marco.pag(at)outlook.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
-*/
 
 #include <iostream>
-#include "slots.hpp"
-#include "fred_hwacc.hpp"
+#include "hw_task.hpp"
+#include "hw_mod.hpp"
 
 // DDR memory (512 MB)
 data_t mem[(512 * 1024 * 1024) / sizeof(data_t)];
@@ -58,7 +47,7 @@ int main()
 	args[1] = (args_t)( ((uint64_t)&mem[b_idx]) - ((uint64_t)&mem[0]) );
 	args[0] = (args_t)( ((uint64_t)&mem[c_idx]) - ((uint64_t)&mem[0]) );
 
-	slot_0(&id_out, args, mem, mem);;
+	hw_task(&id_out, args, mem, mem);;
 
 	print_vect(c_idx, 10);
 
