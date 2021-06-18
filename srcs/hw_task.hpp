@@ -1,7 +1,7 @@
 /*
  * Fred hardware accelerator stub.
  *
- * Copyright (C) 2019, Marco Pagani, ReTiS Lab.
+ * Copyright (C) 2021, Marco Pagani, ReTiS Lab.
  * <marco.pag(at)outlook.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,18 +16,23 @@
 #include <stdint.h>
 #include "ap_int.h"
 
-typedef uint64_t args_t;
-typedef uint32_t data_t;
+#define ARGS_SIZE 8
+#define ID_WIDTH 32
 
-static const uint8_t ARGS_SIZE = 8;
+// User customizable
+#define DATA_WIDTH 128
+#define ARGS_WIDTH 64
 
-void hw_task_0(args_t *id, args_t args[ARGS_SIZE], volatile data_t *mem_in, volatile data_t *mem_out);
+typedef ap_uint<ID_WIDTH> id_ht;
+typedef ap_uint<ARGS_WIDTH> args_ht;
+typedef ap_uint<DATA_WIDTH> data_ht;
 
-void hw_task_1(args_t *id, args_t args[ARGS_SIZE], volatile data_t *mem_in, volatile data_t *mem_out);
+void hw_task_0(id_ht *id, args_ht args[ARGS_SIZE], volatile data_ht *mem_in, volatile data_ht *mem_out);
 
-void hw_task_2(args_t *id, args_t args[ARGS_SIZE], volatile data_t *mem_in, volatile data_t *mem_out);
+void hw_task_1(id_ht *id, args_ht args[ARGS_SIZE], volatile data_ht *mem_in, volatile data_ht *mem_out);
 
-void hw_task_3(args_t *id, args_t args[ARGS_SIZE], volatile data_t *mem_in, volatile data_t *mem_out);
+void hw_task_2(id_ht *id, args_ht args[ARGS_SIZE], volatile data_ht *mem_in, volatile data_ht *mem_out);
+
+void hw_task_3(id_ht *id, args_ht args[ARGS_SIZE], volatile data_ht *mem_in, volatile data_ht *mem_out);
 
 #endif /* SLOTS_HPP */
-

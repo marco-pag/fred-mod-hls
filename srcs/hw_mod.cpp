@@ -1,7 +1,7 @@
 /*
  * Fred hardware accelerator stub.
  *
- * Copyright (C) 2019, Marco Pagani, ReTiS Lab.
+ * Copyright (C) 2021, Marco Pagani, ReTiS Lab.
  * <marco.pag(at)outlook.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -12,19 +12,17 @@
 
 #include "hw_mod.hpp"
 
-void hw_mod(args_t *id, args_t args[ARGS_SIZE], volatile data_t *mem_in, volatile data_t *mem_out)
+void hw_mod(id_ht *id, args_ht args[ARGS_SIZE], volatile data_ht *mem_in, volatile data_ht *mem_out)
 {
-	#pragma HLS DATAFLOW
+	data_ht temp;
 
 	*id = MODULE_ID;
-	data_t temp;
 
-	args_t arg_out = args[0];
-	args_t arg_in = args[1];
+	data_ht *data_out = (data_ht *)&mem_out[args[0] / sizeof (data_ht)];
+	data_ht *data_in = (data_ht *)&mem_in[args[1] / sizeof (data_ht)];
 
-	for (int i = 0; i < BLOCK_SIZE_DT; ++i) {
-		#pragma HLS PIPELINE
-		temp = *(mem_in + i + (arg_in / sizeof(data_t)));
-		*(mem_out + i + (arg_out / sizeof(data_t))) = temp;
+	for (int i = 0; i < BLOCK_SIZE_DHT; ++i) {
+		temp = data_in[i];
+		data_out[i] = temp;
 	}
 }
